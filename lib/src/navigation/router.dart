@@ -3,73 +3,19 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'routes.dart';
 
-// Forward declarations for screens (to be implemented)
-class DashboardScreen extends StatelessWidget {
-  const DashboardScreen({super.key});
-  @override
-  Widget build(BuildContext context) => const Scaffold(body: Center(child: Text('Dashboard')));
-}
-
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
-  @override
-  Widget build(BuildContext context) => const Scaffold(body: Center(child: Text('Profile')));
-}
-
-class AddCowScreen extends StatelessWidget {
-  const AddCowScreen({super.key});
-  @override
-  Widget build(BuildContext context) => const Scaffold(body: Center(child: Text('Add Cow')));
-}
-
-class CowProfileScreen extends StatelessWidget {
-  final String cowId;
-  const CowProfileScreen({super.key, required this.cowId});
-  @override
-  Widget build(BuildContext context) => Scaffold(body: Center(child: Text('Cow Profile: $cowId')));
-}
-
-class AddProductScreen extends StatelessWidget {
-  const AddProductScreen({super.key});
-  @override
-  Widget build(BuildContext context) => const Scaffold(body: Center(child: Text('Add Product')));
-}
-
-class ProductDetailsScreen extends StatelessWidget {
-  final String productId;
-  const ProductDetailsScreen({super.key, required this.productId});
-  @override
-  Widget build(BuildContext context) => Scaffold(body: Center(child: Text('Product Details: $productId')));
-}
-
-class ForumScreen extends StatelessWidget {
-  const ForumScreen({super.key});
-  @override
-  Widget build(BuildContext context) => const Scaffold(body: Center(child: Text('Forum')));
-}
-
-class NetworkScreen extends StatelessWidget {
-  const NetworkScreen({super.key});
-  @override
-  Widget build(BuildContext context) => const Scaffold(body: Center(child: Text('Network')));
-}
-
-class CrossBreedingScreen extends StatelessWidget {
-  const CrossBreedingScreen({super.key});
-  @override
-  Widget build(BuildContext context) => const Scaffold(body: Center(child: Text('Cross Breeding')));
-}
-
-class StrayCowsScreen extends StatelessWidget {
-  const StrayCowsScreen({super.key});
-  @override
-  Widget build(BuildContext context) => const Scaffold(body: Center(child: Text('Stray Cows')));
-}
+// Import screen components
+import '../features/dashboard/dashboard_screen.dart';
+import '../features/profile/profile_screen.dart';
+import '../features/forum/forum_screen.dart';
+import '../features/network/network_screen.dart';
+import '../features/settings/settings_screen.dart';
+import '../features/help/help_screen.dart';
 
 class NotFoundScreen extends StatelessWidget {
   const NotFoundScreen({super.key});
   @override
-  Widget build(BuildContext context) => const Scaffold(body: Center(child: Text('Page Not Found')));
+  Widget build(BuildContext context) =>
+      const Scaffold(body: Center(child: Text('Page Not Found')));
 }
 
 class LandingScreen extends StatelessWidget {
@@ -81,7 +27,8 @@ class LandingScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('Welcome to Dhenu', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+            const Text('Welcome to Dhenu',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () => GoRouter.of(context).go('/dashboard'),
@@ -131,8 +78,8 @@ class ScaffoldWithDrawer extends StatelessWidget {
             _buildDrawerItem(context, 'Profile', '/profile', location),
             _buildDrawerItem(context, 'Forum', '/forum', location),
             _buildDrawerItem(context, 'Network', '/network', location),
-            _buildDrawerItem(context, 'Cross Breeding', '/cross-breeding', location),
-            _buildDrawerItem(context, 'Stray Cows', '/stray-cows', location),
+            _buildDrawerItem(context, 'Settings', '/settings', location),
+            _buildDrawerItem(context, 'Help', '/help', location),
           ],
         ),
       ),
@@ -140,9 +87,10 @@ class ScaffoldWithDrawer extends StatelessWidget {
     );
   }
 
-  Widget _buildDrawerItem(BuildContext context, String title, String route, String currentLocation) {
+  Widget _buildDrawerItem(BuildContext context, String title, String route,
+      String currentLocation) {
     final isSelected = currentLocation == route;
-    
+
     return ListTile(
       title: Text(
         title,
@@ -171,7 +119,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: '/',
         builder: (context, state) => const LandingScreen(),
       ),
-      
+
       // App routes - wrapped in a ShellRoute for the drawer navigation
       ShellRoute(
         builder: (context, state, child) {
@@ -189,7 +137,7 @@ final routerProvider = Provider<GoRouter>((ref) {
               child: DashboardScreen(),
             ),
           ),
-          
+
           // Profile route
           GoRoute(
             path: '/profile',
@@ -197,49 +145,31 @@ final routerProvider = Provider<GoRouter>((ref) {
               child: ProfileScreen(),
             ),
           ),
-          
-          // Cow management routes
-          GoRoute(
-            path: '/add-cow',
-            builder: (context, state) => const AddCowScreen(),
-          ),
-          GoRoute(
-            path: '/cow-profile/:id',
-            builder: (context, state) {
-              final cowId = state.pathParameters['id'] ?? '';
-              return CowProfileScreen(cowId: cowId);
-            },
-          ),
-          
-          // Marketplace routes
-          GoRoute(
-            path: '/add-product',
-            builder: (context, state) => const AddProductScreen(),
-          ),
-          GoRoute(
-            path: '/product-details/:id',
-            builder: (context, state) {
-              final productId = state.pathParameters['id'] ?? '';
-              return ProductDetailsScreen(productId: productId);
-            },
-          ),
-          
-          // Other app routes
+
+          // Other basic app routes
           GoRoute(
             path: '/forum',
-            builder: (context, state) => const ForumScreen(),
+            pageBuilder: (context, state) => const NoTransitionPage<void>(
+              child: ForumScreen(),
+            ),
           ),
           GoRoute(
             path: '/network',
-            builder: (context, state) => const NetworkScreen(),
+            pageBuilder: (context, state) => const NoTransitionPage<void>(
+              child: NetworkScreen(),
+            ),
           ),
           GoRoute(
-            path: '/cross-breeding',
-            builder: (context, state) => const CrossBreedingScreen(),
+            path: '/settings',
+            pageBuilder: (context, state) => const NoTransitionPage<void>(
+              child: SettingsScreen(),
+            ),
           ),
           GoRoute(
-            path: '/stray-cows',
-            builder: (context, state) => const StrayCowsScreen(),
+            path: '/help',
+            pageBuilder: (context, state) => const NoTransitionPage<void>(
+              child: HelpScreen(),
+            ),
           ),
         ],
       ),

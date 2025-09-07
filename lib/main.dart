@@ -4,20 +4,12 @@ import 'src/navigation/router.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'src/core/theme/app_theme.dart';
 import 'src/core/providers/locale_provider.dart';
-import 'src/features/auth/providers/auth_provider.dart';
 
-void main() async {
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  
-  // Create a container for initialization
-  final container = ProviderContainer();
-  
-  // Initialize auth service
-  await container.read(authServiceProvider).initialize();
-  
-  runApp(ProviderScope(
-    parent: container,
-    child: const DhenuApp(),
+
+  runApp(const ProviderScope(
+    child: DhenuApp(),
   ));
 }
 
@@ -29,7 +21,7 @@ class DhenuApp extends ConsumerWidget {
     final router = ref.watch(routerProvider);
     final themeData = ref.watch(themeProvider);
     final locale = ref.watch(localeProvider);
-    
+
     return MaterialApp.router(
       title: 'Dhenu',
       theme: themeData,
@@ -53,14 +45,17 @@ class DhenuApp extends ConsumerWidget {
 
 // Placeholder class until we generate the real AppLocalizations
 class AppLocalizations {
-  static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
+  static const LocalizationsDelegate<AppLocalizations> delegate =
+      _AppLocalizationsDelegate();
 }
 
-class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
+class _AppLocalizationsDelegate
+    extends LocalizationsDelegate<AppLocalizations> {
   const _AppLocalizationsDelegate();
 
   @override
-  bool isSupported(Locale locale) => ['en', 'hi', 'kn', 'mr'].contains(locale.languageCode);
+  bool isSupported(Locale locale) =>
+      ['en', 'hi', 'kn', 'mr'].contains(locale.languageCode);
 
   @override
   Future<AppLocalizations> load(Locale locale) async => AppLocalizations();

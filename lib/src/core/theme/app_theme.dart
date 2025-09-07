@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../constants/app_colors.dart';
 
 /// Theme provider that provides the appropriate theme based on the device's brightness
@@ -31,60 +30,60 @@ final _lightTheme = ThemeData(
     onSurface: AppColors.textLight,
   ),
   scaffoldBackgroundColor: AppColors.backgroundLight,
-  textTheme: GoogleFonts.robotoTextTheme().copyWith(
-    displayLarge: GoogleFonts.roboto(
+  textTheme: TextTheme(
+    displayLarge: TextStyle(
       color: AppColors.textLight,
       fontWeight: FontWeight.bold,
     ),
-    displayMedium: GoogleFonts.roboto(
+    displayMedium: TextStyle(
       color: AppColors.textLight,
       fontWeight: FontWeight.bold,
     ),
-    displaySmall: GoogleFonts.roboto(
+    displaySmall: TextStyle(
       color: AppColors.textLight,
       fontWeight: FontWeight.bold,
     ),
-    headlineLarge: GoogleFonts.roboto(
+    headlineLarge: TextStyle(
       color: AppColors.textLight,
       fontWeight: FontWeight.bold,
     ),
-    headlineMedium: GoogleFonts.roboto(
+    headlineMedium: TextStyle(
       color: AppColors.textLight,
       fontWeight: FontWeight.w600,
     ),
-    headlineSmall: GoogleFonts.roboto(
+    headlineSmall: TextStyle(
       color: AppColors.textLight,
       fontWeight: FontWeight.w600,
     ),
-    titleLarge: GoogleFonts.roboto(
+    titleLarge: TextStyle(
       color: AppColors.textLight,
       fontWeight: FontWeight.w600,
     ),
-    titleMedium: GoogleFonts.roboto(
+    titleMedium: TextStyle(
       color: AppColors.textLight,
       fontWeight: FontWeight.w500,
     ),
-    titleSmall: GoogleFonts.roboto(
+    titleSmall: TextStyle(
       color: AppColors.textLight,
       fontWeight: FontWeight.w500,
     ),
-    bodyLarge: GoogleFonts.roboto(
+    bodyLarge: TextStyle(
       color: AppColors.textLight,
     ),
-    bodyMedium: GoogleFonts.roboto(
+    bodyMedium: TextStyle(
       color: AppColors.textLight,
     ),
-    bodySmall: GoogleFonts.roboto(
+    bodySmall: TextStyle(
       color: AppColors.textLight,
     ),
-    labelLarge: GoogleFonts.roboto(
+    labelLarge: TextStyle(
       color: AppColors.textLight,
       fontWeight: FontWeight.w500,
     ),
-    labelMedium: GoogleFonts.roboto(
+    labelMedium: TextStyle(
       color: AppColors.textLight,
     ),
-    labelSmall: GoogleFonts.roboto(
+    labelSmall: TextStyle(
       color: AppColors.textLight,
     ),
   ),
@@ -92,7 +91,7 @@ final _lightTheme = ThemeData(
     backgroundColor: AppColors.backgroundLight,
     elevation: 0,
     iconTheme: IconThemeData(color: AppColors.iconLight),
-    titleTextStyle: GoogleFonts.roboto(
+    titleTextStyle: TextStyle(
       color: AppColors.textLight,
       fontWeight: FontWeight.bold,
       fontSize: 20,
