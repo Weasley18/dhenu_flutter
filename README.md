@@ -2,39 +2,14 @@
 
 ## Overview
 
-Dhenu is an AI-powered mobile platform designed to support farmers, Gaushala owners, and the general public in the conservation and management of Indian cow breeds. Built with Flutter, this application offers a comprehensive suite of tools for cow management, community engagement, and marketplace access.
+Dhenu is an AI-powered mobile platform designed to support farmers, Gaushala owners, and the general public in the conservation and management of Indian cow breeds. Built with Flutter, this application provides a structured foundation for cow management and community engagement.
 
-## Features
+## Currently Implemented Features
 
-### Authentication
-- User onboarding, sign-in, and sign-up
-- Authentication error handling
-- Secure credential management
-
-### Cow Management
-- Add, view, update, and delete cow records
-- Cow profile management with health tracking
-- Advanced filtering and searching capabilities
-
-### Community Features
-- Community Forum for discussions and knowledge sharing
-- Post creation, editing, and management
-- Interactive commenting system
-
-### Chatbot Integration
-- AI chatbot for specialized assistance
-- Natural language processing for cow health queries
-- Personalized recommendations
-
-### Network & Geolocation
-- Map-based features to locate nearby Gaushalas and facilities
-- Real-time location services and directions
-- Search and filter options for finding resources
-
-### Marketplace
-- Product listing and management for cow-based products
-- Detailed product information and imagery
-- Inquiry submission functionality
+### Navigation and UI Framework
+- Responsive drawer-based navigation
+- Basic screen scaffolding for all major features
+- Theme implementation with brand color scheme
 
 ### Multilingual Support
 - Full internationalization (i18n) with support for:
@@ -43,6 +18,14 @@ Dhenu is an AI-powered mobile platform designed to support farmers, Gaushala own
   - Kannada
   - Marathi
 
+### Screen Structure
+- Dashboard - Home screen with overview information
+- Profile - User profile management
+- Forum - Community discussion board (structure only)
+- Network - Geolocation-based services (structure only)
+- Settings - Application preferences (structure only)
+- Help - User assistance and information (structure only)
+
 ## Tech Stack
 
 - **Framework**: Flutter (SDK >=3.0.0)
@@ -50,7 +33,7 @@ Dhenu is an AI-powered mobile platform designed to support farmers, Gaushala own
 - **Navigation**: Go Router
 - **Localization**: Flutter Localizations & Intl
 - **Storage**: Shared Preferences
-- **Architecture**: Feature-first with clean architecture principles
+- **Architecture**: Feature-first design
 
 ## Project Structure
 
@@ -60,21 +43,18 @@ lib/
 └── src/
     ├── common_widgets/      # Reusable UI components
     ├── core/                # Core functionality
-    │   ├── api/             # API services
-    │   ├── services/        # Business logic services
     │   ├── constants/       # App-wide constants
-    │   ├── models/          # Data models
+    │   ├── l10n/            # Internationalization resources
     │   ├── providers/       # State management providers
-    │   ├── theme/           # App theme configuration
-    │   └── l10n/            # Internationalization resources
+    │   ├── services/        # Business logic services
+    │   └── theme/           # App theme configuration
     ├── features/            # Feature modules
-    │   ├── auth/            # Authentication
-    │   ├── user/            # User management
-    │   ├── cow_management/  # Cow management
+    │   ├── dashboard/       # Dashboard screen
     │   ├── forum/           # Community forum
-    │   ├── chatbot/         # AI chatbot integration
-    │   ├── network/         # Geolocation and maps
-    │   └── marketplace/     # Product marketplace
+    │   ├── help/            # Help and support
+    │   ├── network/         # Geolocation services
+    │   ├── profile/         # User profile
+    │   └── settings/        # App settings
     ├── navigation/          # App navigation and routing
     └── testing/             # Testing utilities
 ```
@@ -104,60 +84,30 @@ lib/
    flutter run
    ```
 
-### Configuration
-- Configure environment variables in `.env` file (see `.env.example`)
-- For iOS, update `ios/Runner/Info.plist` with required permissions
-- For Android, update `android/app/src/main/AndroidManifest.xml` as needed
-
 ## Development
 
 ### Code Style
 This project follows the official [Flutter style guide](https://dart.dev/guides/language/effective-dart/style) and uses Flutter Lints for code quality.
 
 ### State Management
-The app uses Flutter Riverpod for state management. All providers are organized within their respective feature modules.
+The app uses Flutter Riverpod for state management.
 
 ### Adding Features
 1. Create a new directory under `lib/src/features/`
 2. Implement screens, controllers, and repositories
-3. Register routes in `lib/src/navigation/`
+3. Register routes in `lib/src/navigation/router.dart`
 4. Add tests for new functionality
 
 ## Testing
 
-The project includes comprehensive testing:
-- **Unit tests** for models and business logic
-- **Widget tests** for UI components
-- **Integration tests** for user flows
+The project has a testing framework set up for:
+- Unit tests for models
+- Widget tests for UI components
+- Integration tests for user flows
 
 To run tests:
 ```
 flutter test                                      # Run all unit and widget tests
-flutter test test/models/                         # Run specific test directory
 flutter test integration_test/auth_flow_test.dart # Run integration test
 ```
 
-## Internationalization
-
-The app supports multiple languages through Flutter's localization system. Translations are stored in `.arb` files in `lib/src/core/l10n/`.
-
-To add a new language:
-1. Create a new `.arb` file in the l10n directory
-2. Run `flutter gen-l10n` to generate localization files
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Acknowledgments
-
-- Thanks to all contributors who have helped shape this project
-- Special thanks to the Flutter team for their amazing framework
