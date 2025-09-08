@@ -34,10 +34,7 @@ class DhenuApp extends ConsumerWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: const [
-        Locale('en'), // English
-        Locale('hi'), // Hindi
-        Locale('kn'), // Kannada
-        Locale('mr'), // Marathi
+        Locale('en'),
       ],
     );
   }
@@ -54,8 +51,7 @@ class _AppLocalizationsDelegate
   const _AppLocalizationsDelegate();
 
   @override
-  bool isSupported(Locale locale) =>
-      ['en', 'hi', 'kn', 'mr'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => ['en'].contains(locale.languageCode);
 
   @override
   Future<AppLocalizations> load(Locale locale) async => AppLocalizations();

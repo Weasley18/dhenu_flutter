@@ -11,12 +11,6 @@ Dhenu is an AI-powered mobile platform designed to support farmers, Gaushala own
 - Basic screen scaffolding for all major features
 - Theme implementation with brand color scheme
 
-### Multilingual Support
-- Full internationalization (i18n) with support for:
-  - English
-  - Hindi
-  - Kannada
-  - Marathi
 
 ### Screen Structure
 - Dashboard - Home screen with overview information
